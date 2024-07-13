@@ -1,9 +1,9 @@
+import { MainLayout } from "./layouts/MainLayout";
+
 function App() {
   return (
     <>
-      <main>
-        <p className="text-product-yellow_dark text-titleXL">App!</p>
-      </main>
+      <MainLayout />
     </>
   );
 }

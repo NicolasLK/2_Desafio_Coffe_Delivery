@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "custom-bg": "url('./Bg_Content.png')",
+      },
       colors: {
         product: {
           yellow: "#DBAC2C",
@@ -32,24 +35,18 @@ export default {
         Baloo2_ExtraBold: ["Baloo2_ExtraBold", "serif"],
       },
       fontSize: {
-        title: {
-          titleXL: "3rem",
-          titleL: "2rem",
-          titleM: "1.5rem",
-          titleS: "1.25rem",
-          titleXS: "1.125rem",
-        },
-        text: {
-          textL: "1.25rem",
-          textM: "1rem",
-          textS: "0.875rem",
-          textXS: "0.125rem",
-        },
-        button: {
-          G: "0.875rem",
-          M: "0.125rem",
-        },
-        tag: "0.625rem",
+        titleXL: ["3rem", "130%"],
+        titleL: ["2rem", "130%"],
+        titleM: ["1.5rem", "130%"],
+        titleS: ["1.25rem", "130%"],
+        titleXS: ["1.125rem", "130%"],
+        textL: ["1.25rem", "130%"],
+        textM: ["1rem", "130%"],
+        textS: ["0.875rem", "130%"],
+        textXS: ["0.125rem", "130%"],
+        buttonG: ["0.875rem", "160%"],
+        buttonM: ["0.125rem", "160%"],
+        tag: ["0.625rem", "130%"],
       },
     },
   },
