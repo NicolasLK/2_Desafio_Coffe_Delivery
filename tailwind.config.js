@@ -6,6 +6,10 @@ export default {
       backgroundImage: {
         "custom-bg": "url('./Bg_Content.png')",
       },
+      spacing: {
+        custom_top: "calc(-1.25rem / 2)",
+        custom_right: "calc(-1.25rem / 2)",
+      },
       colors: {
         product: {
           yellow: "#DBAC2C",
@@ -43,7 +47,7 @@ export default {
         textL: ["1.25rem", "130%"],
         textM: ["1rem", "130%"],
         textS: ["0.875rem", "130%"],
-        textXS: ["0.125rem", "130%"],
+        textXS: ["0.75rem", "130%"],
         buttonG: ["0.875rem", "160%"],
         buttonM: ["0.125rem", "160%"],
         tag: ["0.625rem", "130%"],

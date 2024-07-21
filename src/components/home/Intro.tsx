@@ -1,5 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from "lucide-react";
-import imgGiantCoffe from "/GiantCoffee.png";
+import imgGiantCoffe from "./../../assets/GiantCoffee.png";
 
 export const Intro = () => {
   return (

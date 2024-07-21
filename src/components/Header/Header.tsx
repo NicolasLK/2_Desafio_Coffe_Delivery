@@ -1,6 +1,7 @@
 import { MapPin, ShoppingCart } from "lucide-react";
 import { Logo } from "./Logo";
 import { NavLink, useNavigate } from "react-router-dom";
+import { CustomButton } from "../CustomButton";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -18,14 +19,17 @@ export const Header = () => {
               Criciuma, SC
             </p>
           </span>
-          <button
+          <CustomButton
             onClick={() => {
               navigate("/carrinho");
             }}
-            className="bg-product-yellow_light p-2 rounded-md"
+            className="bg-product-yellow_light p-2 rounded-md relative"
           >
+            <span className="flex items-center justify-center w-5 h-5 bg-product-yellow_dark rounded-full font-Roboto_Bold text-textXS text-base-white top-custom_top right-custom_right absolute">
+              2
+            </span>
             <ShoppingCart fill="#C47F17" color="#C47F17" className="w-6 h-6" />
-          </button>
+          </CustomButton>
         </div>
       </header>
     </>
