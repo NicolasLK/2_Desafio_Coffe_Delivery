@@ -14,7 +14,7 @@ export const AppendCoffees = ({
 }: AppendCoffeesProps) => {
   return (
     <>
-      <div className="flex flex-1 items-center justify-between gap-2 p-2 w-full rounded-md bg-base-button">
+      <div className="flex flex-1 items-center justify-between gap-2 p-2 rounded-md bg-base-button">
         <CustomButton
           type="button"
           onClick={decQtdCoffee}
@@ -26,7 +26,7 @@ export const AppendCoffees = ({
         <input
           type="number"
           readOnly
-          className="w-full bg-transparent border-none focus:outline-none font-Roboto_Regular text-textM text-base-title text-center"
+          className="max-w-[2rem] max-h-[2rem] bg-transparent border-none focus:outline-none font-Roboto_Regular text-textM text-base-title text-justify"
           value={quantity}
         />
         <CustomButton
