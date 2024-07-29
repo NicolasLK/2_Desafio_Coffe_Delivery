@@ -49,7 +49,7 @@ export default {
         textS: ["0.875rem", "130%"],
         textXS: ["0.75rem", "130%"],
         buttonG: ["0.875rem", "160%"],
-        buttonM: ["0.125rem", "160%"],
+        buttonS: ["0.75rem", "160%"],
         tag: ["0.625rem", "130%"],
       },
     },
