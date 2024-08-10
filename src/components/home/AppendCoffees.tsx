@@ -1,7 +1,7 @@
 import { Minus, Plus } from "lucide-react";
 import { CustomButton } from "../CustomButton";
 
-interface AppendCoffeesProps {
+interface QuantityCoffeesProps {
   quantity: number;
   addQtdCoffee: () => void;
   decQtdCoffee: () => void;
@@ -11,7 +11,7 @@ export const AppendCoffees = ({
   quantity,
   addQtdCoffee,
   decQtdCoffee,
-}: AppendCoffeesProps) => {
+}: QuantityCoffeesProps) => {
   return (
     <div className="flex items-center gap-2 p-2 rounded-md bg-base-button">
       <CustomButton

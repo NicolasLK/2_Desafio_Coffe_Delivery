@@ -1,7 +1,7 @@
 export const ValueCartForm = () => {
   return (
     <>
-      <span className="flex items-center justify-between">
+      <span className="flex items-center justify-between mt-2">
         <p className="font-Roboto_Regular text-textS text-base-text">
           Total de itens
         </p>

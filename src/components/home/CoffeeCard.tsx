@@ -1,22 +1,34 @@
+import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { CustomButton } from "../CustomButton";
 import { AppendCoffees } from "./AppendCoffees";
 import { formatMoney } from "../../utils/formatMoney";
-import { useState } from "react";
+import { useCartContext } from "../../hooks/useCartContext";
 
 interface CoffeeProps {
   coffee: Coffee;
 }
 
 export const CoffeeCard = ({ coffee }: CoffeeProps) => {
-  const [qtdCoffee, setQtdCoffee] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+
+  const { addCoffeeToCart } = useCartContext();
 
   function handleAddQtdCoffee() {
-    setQtdCoffee((state: number) => state + 1);
+    setQuantity((state: number) => state + 1);
   }
 
   function handleDecQtdCoffee() {
-    setQtdCoffee((state: number) => state - 1);
+    setQuantity((state: number) => state - 1);
+  }
+
+  function handleAddToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    };
+
+    addCoffeeToCart(coffeeToAdd);
   }
 
   const formattedPrice = formatMoney(coffee.price);
@@ -53,14 +65,14 @@ export const CoffeeCard = ({ coffee }: CoffeeProps) => {
             </p>
           </span>
           <AppendCoffees
-            quantity={qtdCoffee}
+            quantity={quantity}
             addQtdCoffee={handleAddQtdCoffee}
             decQtdCoffee={handleDecQtdCoffee}
           />
           <CustomButton
             type="button"
             onClick={() => {
-              console.log("A");
+              handleAddToCart();
             }}
             className="w-[2.375rem] h-[2.375rem] flex items-center justify-center bg-product-purple_dark p-2 rounded-md border-none ml-[0.3rem]"
           >

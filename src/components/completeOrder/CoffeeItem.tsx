@@ -1,35 +1,42 @@
-import { useState } from "react";
 import { AppendCoffees } from "../home/AppendCoffees";
-import americanCoffeIMG from "/coffees/americano.png";
 import { CustomButton } from "../CustomButton";
 import { Trash2 } from "lucide-react";
+import { CartItemProps } from "../../contexts/CartContext";
+import { formatMoney } from "../../utils/formatMoney";
+import { useCartContext } from "../../hooks/useCartContext";
 
-export const CoffeeItem = () => {
-  const [qtdCoffee, setQtdCoffee] = useState(1);
+interface CoffeeItemProps {
+  coffee: CartItemProps;
+}
+
+export const CoffeeItem = ({ coffee }: CoffeeItemProps) => {
+  const { modifyQuantityCoffee } = useCartContext();
 
   function handleAddQtdCoffee() {
-    setQtdCoffee((state: number) => state + 1);
+    modifyQuantityCoffee(coffee.id, "increase");
   }
 
   function handleDecQtdCoffee() {
-    setQtdCoffee((state: number) => state - 1);
+    modifyQuantityCoffee(coffee.id, "decrease");
   }
+
+  const coffeeTotalPrice = coffee.price * coffee.quantity;
+
+  const formattedCoffeeTotalPrice = formatMoney(coffeeTotalPrice);
 
   return (
     <>
-      <article className="flex gap-10 px-1 py-2">
+      <article className="flex px-1 py-2">
         <div className="flex items-center gap-5">
-          <img
-            src={americanCoffeIMG}
-            alt="Imagem do café"
-            className="w-16 h-16"
-          />
+          <img src={coffee.photo} alt="Imagem do café" className="w-16 h-16" />
           <div className="flex flex-col">
-            <p>Nome do café</p>
+            <p className="font-Roboto_Regular text-textM text-base-subtitle min-w-[9.25rem]">
+              {coffee.name}
+            </p>
             <div className="flex items-center gap-2 mt-2 h-8">
               <div className="flex items-center gap-2 w-full max-w-[4.5rem]">
                 <AppendCoffees
-                  quantity={qtdCoffee}
+                  quantity={coffee.quantity}
                   addQtdCoffee={handleAddQtdCoffee}
                   decQtdCoffee={handleDecQtdCoffee}
                 />
@@ -42,7 +49,7 @@ export const CoffeeItem = () => {
           </div>
         </div>
         <p className="ml-auto mr-0 text-base-text font-Roboto_Bold text-textM">
-          R$ 9,90
+          R$ {formattedCoffeeTotalPrice}
         </p>
       </article>
     </>
