@@ -36,7 +36,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   function addCoffeeToCart(coffee: CartItemProps) {
     const newCoffeeInCart = cartItems.findIndex((cartItem) => {
-      cartItem.id === coffee.id;
+      return cartItem.id === coffee.id;
     });
 
     const newCart = produce(cartItems, (draft) => {
@@ -56,12 +56,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   ) {
     const newCart = produce(cartItems, (draft) => {
       const coffeeExistInCart = cartItems.findIndex((cartItem) => {
-        cartItem.id === cartItemId;
+        return cartItem.id === cartItemId;
       });
 
       if (coffeeExistInCart >= 0) {
         const item = draft[coffeeExistInCart];
-        type === "increase" ? item.quantity + 1 : item.quantity - 1;
+        item.quantity =
+          type === "increase" ? item.quantity + 1 : item.quantity - 1;
       }
     });
 
