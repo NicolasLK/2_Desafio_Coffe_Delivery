@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 export interface CartItemProps extends Coffee {
   quantity: number;
@@ -12,11 +12,14 @@ interface CartContextProviderProps {
 export interface CartContextProps {
   cartItems: CartItemProps[];
   quantityCart: number;
+  totalValueCartItems: number;
   addCoffeeToCart: (coffee: CartItemProps) => void;
   modifyQuantityCoffee: (
     cartItemId: number,
     type: "increase" | "decrease"
   ) => void;
+  rmvCoffeToCart: (cartItemId: number) => void;
+  clearCoffeeCart: () => void;
 }
 
 export const CartContext = createContext({} as CartContextProps);
@@ -33,6 +36,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   });
 
   const quantityCart = cartItems.length;
+
+  const totalValueCartItems = cartItems.reduce((total, cartItem) => {
+    return total + cartItem.price * cartItem.quantity;
+  }, 0);
 
   function addCoffeeToCart(coffee: CartItemProps) {
     const newCoffeeInCart = cartItems.findIndex((cartItem) => {
@@ -69,14 +76,39 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     setCartItems(newCart);
   }
 
+  function rmvCoffeToCart(cartItemId: number) {
+    const newCart = produce(cartItems, (draft) => {
+      const coffeeExistInCart = cartItems.findIndex((cartItem) => {
+        return cartItem.id === cartItemId;
+      });
+
+      if (coffeeExistInCart >= 0) {
+        draft.splice(coffeeExistInCart, 1);
+      }
+    });
+
+    setCartItems(newCart);
+  }
+
+  function clearCoffeeCart() {
+    setCartItems([]);
+  }
+
+  useEffect(() => {
+    localStorage.setItem(KEY_COFFEE_STORAGE, JSON.stringify(cartItems));
+  }, [cartItems]);
+
   return (
     <>
       <CartContext.Provider
         value={{
           cartItems,
           quantityCart,
+          totalValueCartItems,
           addCoffeeToCart,
           modifyQuantityCoffee,
+          rmvCoffeToCart,
+          clearCoffeeCart,
         }}
       >
         {children}

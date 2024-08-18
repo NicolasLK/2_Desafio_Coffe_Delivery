@@ -10,7 +10,7 @@ interface CoffeeItemProps {
 }
 
 export const CoffeeItem = ({ coffee }: CoffeeItemProps) => {
-  const { modifyQuantityCoffee } = useCartContext();
+  const { modifyQuantityCoffee, rmvCoffeToCart } = useCartContext();
 
   function handleAddQtdCoffee() {
     modifyQuantityCoffee(coffee.id, "increase");
@@ -18,6 +18,10 @@ export const CoffeeItem = ({ coffee }: CoffeeItemProps) => {
 
   function handleDecQtdCoffee() {
     modifyQuantityCoffee(coffee.id, "decrease");
+  }
+
+  function removeCoffeeToCart() {
+    rmvCoffeToCart(coffee.id);
   }
 
   const coffeeTotalPrice = coffee.price * coffee.quantity;
@@ -40,7 +44,11 @@ export const CoffeeItem = ({ coffee }: CoffeeItemProps) => {
                   addQtdCoffee={handleAddQtdCoffee}
                   decQtdCoffee={handleDecQtdCoffee}
                 />
-                <CustomButton className="flex gap-1 uppercase p-2 rounded-md bg-base-button font-Roboto_Regular text-base-text text-buttonS">
+                <CustomButton
+                  type="button"
+                  onClick={removeCoffeeToCart}
+                  className="flex gap-1 uppercase p-2 rounded-md bg-base-button font-Roboto_Regular text-base-text text-buttonS"
+                >
                   <Trash2 color="#8047F8" className="w-4 h-4" />
                   remover
                 </CustomButton>

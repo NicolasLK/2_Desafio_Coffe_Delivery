@@ -29,6 +29,7 @@ export const CoffeeCard = ({ coffee }: CoffeeProps) => {
     };
 
     addCoffeeToCart(coffeeToAdd);
+    setQuantity(1);
   }
 
   const formattedPrice = formatMoney(coffee.price);
