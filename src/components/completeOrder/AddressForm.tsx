@@ -1,12 +1,16 @@
 import { MapPinned } from "lucide-react";
+import { Controller, useFormContext } from "react-hook-form";
+import InputMask from "react-input-mask";
 
 export const AddressForm = () => {
+  const { register, control, formState } = useFormContext();
+
   return (
     <>
       <h1 className="mb-4 font-Baloo2_Bold text-titleXS">
         Complete seu pedido
       </h1>
-      <section className="p-10 rounded-md mb-2 bg-base-card">
+      <section className="p-10 rounded-md mb-2 bg-base-card max-w-[40rem]">
         <span className="flex gap-2 mb-8">
           <MapPinned color="#C47F17" className="w-5 h-5" />
           <span className="flex flex-col gap-[0.125rem]">
@@ -18,7 +22,7 @@ export const AddressForm = () => {
             </p>
           </span>
         </span>
-        <article className="grid grid-cols-1 gap-8 w-full">
+        <article className="grid grid-cols-1 gap-8">
           <div>
             <input
               type="text"
@@ -35,6 +39,7 @@ export const AddressForm = () => {
             <input
               type="number"
               placeholder="Número"
+              min={1}
               className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
             />
             <div className="flex items-center gap-1 flex-1 bg-base-input shadow-sm">
@@ -52,17 +57,17 @@ export const AddressForm = () => {
             <input
               type="text"
               placeholder="Bairro"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-full border shadow-sm"
             />
             <input
               type="text"
               placeholder="Cidade"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-full border shadow-sm"
             />
             <input
               type="text"
               placeholder="UF"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-16 border ml-auto mr-0 shadow-sm"
             />
           </div>
         </article>

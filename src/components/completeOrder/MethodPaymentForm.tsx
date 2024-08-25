@@ -4,11 +4,36 @@ import {
   DollarSign,
   Landmark,
 } from "lucide-react";
+import { useFormContext } from "react-hook-form";
+import { PaymentMethodInput } from "../PaymentMethodInput";
+
+const paymentMethods = {
+  credit: {
+    label: "cartão de crédito",
+    icon: <CreditCard color="#8047F8" size={16} />,
+  },
+  debit: {
+    label: "cartão de débito",
+    icon: <Landmark color="#8047F8" size={16} />,
+  },
+  money: {
+    label: "dinheiro",
+    icon: <CircleDollarSign color="#8047F8" size={16} />,
+  },
+};
 
 export const MethodPaymentForm = () => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  const paymentMethodError = errors?.paymentMethod
+    ?.message as unknown as string;
+
   return (
     <>
-      <section className="p-10 rounded-md mb-4 bg-base-card">
+      <section className="p-10 rounded-md mb-4 bg-base-card max-w-[40rem]">
         <span className="flex gap-2 mb-8">
           <DollarSign color="#8047F8" className="w-5 h-5" />
           <span className="flex flex-col gap-[0.125rem]">
@@ -21,24 +46,17 @@ export const MethodPaymentForm = () => {
           </span>
         </span>
         <div className="flex items-center gap-3 w-full">
-          <span className="flex items-center gap-3 p-3 rounded-md min-w-[11.25rem] bg-base-button">
-            <CreditCard color="#8047F8" />
-            <p className="font-Roboto_Regular text-textXS text-base-text uppercase">
-              cartão de crédito
-            </p>
-          </span>
-          <span className="flex items-center gap-3 p-3 rounded-md min-w-[11.25rem] bg-base-button">
-            <Landmark color="#8047F8" />
-            <p className="font-Roboto_Regular text-textXS text-base-text uppercase">
-              cartão de débito
-            </p>
-          </span>
-          <span className="flex items-center gap-3 p-3 rounded-md min-w-[11.25rem] bg-base-button">
-            <CircleDollarSign color="#8047F8" />
-            <p className="font-Roboto_Regular text-textXS text-base-text uppercase">
-              dinheiro
-            </p>
-          </span>
+          {Object.entries(paymentMethods).map(([key, { label, icon }]) => (
+            <PaymentMethodInput
+              key={label}
+              id={key}
+              icon={icon}
+              label={label}
+              value={key}
+              {...register("paymentMethod")}
+            />
+          ))}
+          {paymentMethodError && <p>{paymentMethodError}</p>}
         </div>
       </section>
     </>
