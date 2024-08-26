@@ -1,9 +1,21 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { MapPinned } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
 import InputMask from "react-input-mask";
+import { CustomInput } from "../CustomInput";
+
+interface ErrorsType {
+  errors: {
+    [key: string]: {
+      message: string;
+    };
+  };
+}
 
 export const AddressForm = () => {
-  const { register, control, formState } = useFormContext();
+  const { register, control, setValue, formState } = useFormContext();
+
+  const { errors } = formState as unknown as ErrorsType;
 
   return (
     <>
@@ -24,50 +36,76 @@ export const AddressForm = () => {
         </span>
         <article className="grid grid-cols-1 gap-8">
           <div>
-            <input
-              type="text"
-              placeholder="CEP"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+            <Controller
+              name="cep"
+              control={control}
+              render={({ field: { value, onChange } }) => (
+                <InputMask
+                  maskChar=""
+                  {...register("cep")}
+                  mask="99999-999"
+                  value={value ?? ""}
+                  onChange={onChange}
+                >
+                  {/* @ts-ignore */}
+                  {() => (
+                    <CustomInput
+                      type="text"
+                      placeholder="CEP"
+                      className="w-fit"
+                      {...register("cep")}
+                      error={errors.cep?.message}
+                    />
+                  )}
+                </InputMask>
+              )}
             />
           </div>
-          <input
+          <CustomInput
             type="text"
             placeholder="Rua"
-            className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+            {...register("street")}
+            error={errors.street?.message}
           />
           <div className="flex gap-4">
-            <input
+            <CustomInput
               type="number"
               placeholder="Número"
               min={1}
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS border shadow-sm"
+              {...register("number")}
+              error={errors.number?.message}
             />
-            <div className="flex items-center gap-1 flex-1 bg-base-input shadow-sm">
-              <input
+            <div className="flex-1 bg-base-input">
+              <CustomInput
                 type="text"
                 placeholder="Complemento"
-                className="p-3 rounded bg-base-input text-base-label w-full font-Roboto_Regular text-textS border border-r-0"
+                rightText="opcional"
+                {...register("complement")}
               />
-              <p className="font-Roboto_Regular text-textXS text-center italic capitalize text-base-label h-full p-3 rounded border border-l-0">
-                opcional
-              </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <input
+            <CustomInput
               type="text"
               placeholder="Bairro"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-full border shadow-sm"
+              {...register("district")}
+              error={errors.district?.message}
             />
-            <input
-              type="text"
-              placeholder="Cidade"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-full border shadow-sm"
-            />
-            <input
+            <div className="flex-1">
+              <CustomInput
+                type="text"
+                placeholder="Cidade"
+                {...register("city")}
+                error={errors.city?.message}
+              />
+            </div>
+            <CustomInput
               type="text"
               placeholder="UF"
-              className="p-3 rounded bg-base-input text-base-label font-Roboto_Regular text-textS w-16 border ml-auto mr-0 shadow-sm"
+              className="max-w-16 ml-auto mr-0"
+              maxLength={2}
+              {...register("uf")}
+              error={errors.uf?.message}
             />
           </div>
         </article>

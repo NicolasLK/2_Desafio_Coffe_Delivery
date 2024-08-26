@@ -31,6 +31,7 @@ export default {
           background: "#FAFAFA",
           white: "#FFFFFF",
         },
+        error: "#F84747",
       },
       fontFamily: {
         Roboto_Regular: ["Roboto_Regular", "sans-serif"],
