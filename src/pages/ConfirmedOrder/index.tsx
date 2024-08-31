@@ -1,7 +1,29 @@
 import { DollarSign, MapPin, Timer } from "lucide-react";
 import deliverymanImg from "../../assets/Motorciclye.png";
+import { OrderInfo } from "../../components/confirmedOrder/OrderInfo";
+import { OrderData } from "../../components/completeOrder/CoffeesForm";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { paymentMethods } from "../../components/completeOrder/PaymentMethods";
+
+
+interface LocationType {
+  state: OrderData;
+}
 
 export default function ConfirmedOrder() {
+  const { state } = useLocation() as unknown as LocationType;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, []);
+
+  console.log(state)
+
   return (
     <>
       <section className="w-full max-w-[70rem] h-[34rem] flex items-center gap-16 mr-auto ml-auto">
@@ -15,31 +37,40 @@ export default function ConfirmedOrder() {
             </p>
           </span>
           <article className="flex flex-col gap-8 p-10 border border-l-product-yellow border-t-product-yellow border-r-product-purple border-b-product-purple rounded-tl-md rounded-bl-[2rem] rounded-tr-[2rem] rounded-br-md">
-            <div className="flex items-center gap-3">
-              <div className="bg-product-purple flex items-center p-2 w-8 h-8 rounded-full">
+            <OrderInfo
+              className="bg-product-purple"
+              icon={
                 <MapPin fill="#FFFFFF" color="#FFFFFF" className="w-4 h-4" />
-              </div>
-              <p className="flex flex-col font-Roboto_Regular text-textM text-base-text">
-                Entrega em <b>Rua João Daniel Martinelli, 102</b>Farrapos -
-                Porto Alegre, RS
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="bg-product-yellow flex items-center p-2 w-8 h-8 rounded-full">
-                <Timer color="#FFFFFF" className="w-4 h-4" />
-              </div>
-              <p className="flex flex-col font-Roboto_Regular text-textM text-base-text">
-                Previsão de entrega <b>20 min - 30 min</b>
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="bg-product-yellow_dark flex items-center p-2 w-8 h-8 rounded-full">
-                <DollarSign color="#FFFFFF" className="w-4 h-4" />
-              </div>
-              <p className="flex flex-col font-Roboto_Regular text-textM text-base-text">
-                Pagamento na entrega <b>Cartão de Crédito</b>
-              </p>
-            </div>
+              }
+              text={
+                <>
+                  Entrega em <strong>{state.street}</strong>, {state.number}
+                  <br />
+                  {state.district} - {state.city}, {state.uf}
+                </>
+              }
+            />
+            <OrderInfo
+              className="bg-product-yellow"
+              icon={<Timer color="#FFFFFF" className="w-4 h-4" />}
+              text={
+                <>
+                  Previsão de entrega
+                  <br />
+                  <strong>20 min - 30 min</strong>
+                </>
+              }
+            />
+            <OrderInfo
+              className="bg-product-yellow_dark "
+              icon={<DollarSign color="#FFFFFF" className="w-4 h-4" />}
+              text={
+                <>
+                  Pagamento na entrega{" "}
+                  <strong>{paymentMethods[state.paymentMethod].label}</strong>
+                </>
+              }
+            />
           </article>
         </div>
         <img src={deliverymanImg} alt="Imagem de um entregador" />

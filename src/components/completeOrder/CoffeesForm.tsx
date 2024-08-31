@@ -28,7 +28,7 @@ const confirOrderFormSchema = z.object({
   }),
 });
 
-type OrderData = z.infer<typeof confirOrderFormSchema>;
+export type OrderData = z.infer<typeof confirOrderFormSchema>;
 
 export const CoffeesForm = () => {
   const { clearCoffeeCart } = useCartContext();
@@ -55,7 +55,10 @@ export const CoffeesForm = () => {
   return (
     <>
       <FormProvider {...confirmOrderForm}>
-        <form className="flex gap-20 w-full max-w-[70rem] mr-auto ml-auto">
+        <form
+          onSubmit={handleSubmit(handleConfirmOrderForm)}
+          className="flex gap-20 w-full max-w-[70rem] mr-auto ml-auto"
+        >
           <div>
             <AddressForm />
             <MethodPaymentForm />

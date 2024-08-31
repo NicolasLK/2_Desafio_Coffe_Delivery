@@ -1,26 +1,7 @@
-import {
-  CircleDollarSign,
-  CreditCard,
-  DollarSign,
-  Landmark,
-} from "lucide-react";
+import { DollarSign } from "lucide-react";
 import { useFormContext } from "react-hook-form";
+import { paymentMethods } from "./PaymentMethods";
 import { PaymentMethodInput } from "../PaymentMethodInput";
-
-const paymentMethods = {
-  credit: {
-    label: "cartão de crédito",
-    icon: <CreditCard color="#8047F8" size={16} />,
-  },
-  debit: {
-    label: "cartão de débito",
-    icon: <Landmark color="#8047F8" size={16} />,
-  },
-  money: {
-    label: "dinheiro",
-    icon: <CircleDollarSign color="#8047F8" size={16} />,
-  },
-};
 
 export const MethodPaymentForm = () => {
   const {

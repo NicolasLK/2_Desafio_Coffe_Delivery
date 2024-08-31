@@ -3,6 +3,9 @@ import { MapPinned } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { CustomInput } from "../CustomInput";
+import { useDebounceCep } from "../../utils/debounceCep";
+import { useEffect, useState } from "react";
+import { getAddressByCep } from "../../services/apis/get-address-by-cep";
 
 interface ErrorsType {
   errors: {
@@ -12,10 +15,40 @@ interface ErrorsType {
   };
 }
 
+interface AddressProps {
+  cep: string;
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  complemento?: string;
+}
+
 export const AddressForm = () => {
+  const [cep, setCep] = useState<string>("");
+
   const { register, control, setValue, formState } = useFormContext();
 
   const { errors } = formState as unknown as ErrorsType;
+
+  const deBouncedCep = useDebounceCep(cep, 1000);
+
+  useEffect(() => {
+    async function getAddress() {
+      try {
+        const address: AddressProps = await getAddressByCep(cep);
+
+        setValue("street", address.logradouro);
+        setValue("district", address.bairro);
+        setValue("city", address.localidade);
+        setValue("uf", address.uf);
+      } catch (error) {
+        return;
+      }
+    }
+
+    getAddress();
+  }, [deBouncedCep]);
 
   return (
     <>
@@ -39,23 +72,28 @@ export const AddressForm = () => {
             <Controller
               name="cep"
               control={control}
-              render={({ field: { value, onChange } }) => (
+              render={({ field: { value } }) => (
                 <InputMask
                   maskChar=""
                   {...register("cep")}
                   mask="99999-999"
                   value={value ?? ""}
-                  onChange={onChange}
+                  onChange={(event) => {
+                    setCep(event.target.value);
+                    setValue("cep", event.target.value);
+                  }}
                 >
                   {/* @ts-ignore */}
                   {() => (
-                    <CustomInput
-                      type="text"
-                      placeholder="CEP"
-                      className="w-fit"
-                      {...register("cep")}
-                      error={errors.cep?.message}
-                    />
+                    <div>
+                      <CustomInput
+                        type="text"
+                        placeholder="CEP"
+                        className="w-fit"
+                        {...register("cep")}
+                        error={errors.cep?.message}
+                      />
+                    </div>
                   )}
                 </InputMask>
               )}
