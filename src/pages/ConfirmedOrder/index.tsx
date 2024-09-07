@@ -6,13 +6,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { paymentMethods } from "../../components/completeOrder/PaymentMethods";
 
-
 interface LocationType {
   state: OrderData;
 }
 
 export default function ConfirmedOrder() {
-  const { state } = useLocation() as unknown as LocationType;
+  const location = useLocation() as unknown as LocationType;
+
+  const state = location?.state;
 
   const navigate = useNavigate();
 
@@ -21,8 +22,6 @@ export default function ConfirmedOrder() {
       navigate("/");
     }
   }, []);
-
-  console.log(state)
 
   return (
     <>

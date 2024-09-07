@@ -1,12 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { CustomButton } from "../CustomButton";
 import { CoffeeItem } from "./CoffeeItem";
 import { ValueCartForm } from "./ValueCartForm";
 import { useCartContext } from "../../hooks/useCartContext";
 
 export const SelectedCoffeesForm = () => {
-  const navigate = useNavigate();
-
   const { cartItems, quantityCart } = useCartContext();
 
   return (
@@ -21,9 +18,7 @@ export const SelectedCoffeesForm = () => {
           <ValueCartForm />
         </div>
         <CustomButton
-          onClick={() => {
-            navigate("/pedido_enviado");
-          }}
+          type="submit"
           disabled={quantityCart <= 0}
           className="px-2 py-3 rounded-md bg-product-yellow font-Roboto_Bold text-buttonG text-base-white uppercase disabled:cursor-not-allowed"
         >

@@ -26,18 +26,24 @@ export const MethodPaymentForm = () => {
             </p>
           </span>
         </span>
-        <div className="flex items-center gap-3 w-full">
-          {Object.entries(paymentMethods).map(([key, { label, icon }]) => (
-            <PaymentMethodInput
-              key={label}
-              id={key}
-              icon={icon}
-              label={label}
-              value={key}
-              {...register("paymentMethod")}
-            />
-          ))}
-          {paymentMethodError && <p>{paymentMethodError}</p>}
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex gap-3 w-full">
+            {Object.entries(paymentMethods).map(([key, { label, icon }]) => (
+              <PaymentMethodInput
+                key={label}
+                id={key}
+                icon={icon}
+                label={label}
+                value={key}
+                {...register("paymentMethod")}
+              />
+            ))}
+          </div>
+          {paymentMethodError && (
+            <p className="font-Roboto_Regular text-textXS text-error italic">
+              {paymentMethodError}
+            </p>
+          )}
         </div>
       </section>
     </>

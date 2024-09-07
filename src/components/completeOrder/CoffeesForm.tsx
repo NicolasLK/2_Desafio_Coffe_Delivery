@@ -59,7 +59,7 @@ export const CoffeesForm = () => {
           onSubmit={handleSubmit(handleConfirmOrderForm)}
           className="flex gap-20 w-full max-w-[70rem] mr-auto ml-auto"
         >
-          <div>
+          <div className="w-full">
             <AddressForm />
             <MethodPaymentForm />
           </div>
