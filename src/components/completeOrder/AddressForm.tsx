@@ -26,6 +26,7 @@ interface AddressProps {
 
 export const AddressForm = () => {
   const [cep, setCep] = useState<string>("");
+  const [disableInputs, setDisableInputs] = useState<boolean>(false);
 
   const { register, control, setValue, formState } = useFormContext();
 
@@ -52,22 +53,22 @@ export const AddressForm = () => {
 
   return (
     <>
-      <h1 className="mb-4 font-Baloo2_Bold text-titleXS">
+      <h1 className="mb-4 font-Baloo2_Bold text-titleXS sm:text-titleS">
         Complete seu pedido
       </h1>
-      <section className="p-10 rounded-md mb-2 bg-base-card max-w-[40rem]">
+      <section className="w-full max-w-[40rem] p-6 sm:p-10 rounded-md mb-4 bg-base-card shadow-md">
         <span className="flex gap-2 mb-8">
           <MapPinned color="#C47F17" className="w-5 h-5" />
           <span className="flex flex-col gap-[0.125rem]">
-            <p className="font-Roboto_Regular text-textM text-base-subtitle">
+            <p className="font-Roboto_Regular text-textS sm:text-textM text-base-subtitle">
               Endereço de Entrega
             </p>
-            <p className="font-Roboto_Regular text-textS text-base-text">
+            <p className="font-Roboto_Regular text-textXS sm:text-textS text-base-text">
               Informe o endereço onde deseja receber seu pedido
             </p>
           </span>
         </span>
-        <article className="grid grid-cols-1 gap-8">
+        <article className="grid grid-cols-1 gap-6 sm:gap-8">
           <div>
             <Controller
               name="cep"
@@ -89,9 +90,10 @@ export const AddressForm = () => {
                       <CustomInput
                         type="text"
                         placeholder="CEP"
-                        className="w-fit"
+                        className="w-full sm:w-fit"
                         {...register("cep")}
                         error={errors.cep?.message}
+                        disabled={disableInputs}
                       />
                     </div>
                   )}
@@ -104,14 +106,16 @@ export const AddressForm = () => {
             placeholder="Rua"
             {...register("street")}
             error={errors.street?.message}
+            disabled={disableInputs}
           />
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <CustomInput
               type="number"
               placeholder="Número"
               min={1}
               {...register("number")}
               error={errors.number?.message}
+              disabled={disableInputs}
             />
             <div className="flex-1 bg-base-input">
               <CustomInput
@@ -119,31 +123,37 @@ export const AddressForm = () => {
                 placeholder="Complemento"
                 rightText="opcional"
                 {...register("complement")}
+                disabled={disableInputs}
               />
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <CustomInput
-              type="text"
-              placeholder="Bairro"
-              {...register("district")}
-              error={errors.district?.message}
-            />
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
+            <div className="flex-1">
+              <CustomInput
+                type="text"
+                placeholder="Bairro"
+                {...register("district")}
+                error={errors.district?.message}
+                disabled={disableInputs}
+              />
+            </div>
             <div className="flex-1">
               <CustomInput
                 type="text"
                 placeholder="Cidade"
                 {...register("city")}
                 error={errors.city?.message}
+                disabled={disableInputs}
               />
             </div>
             <CustomInput
               type="text"
               placeholder="UF"
-              className="max-w-16 ml-auto mr-0"
+              className="w-16"
               maxLength={2}
               {...register("uf")}
               error={errors.uf?.message}
+              disabled={disableInputs}
             />
           </div>
         </article>

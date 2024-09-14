@@ -17,7 +17,7 @@ export const AppendCoffees = ({
       <CustomButton
         type="button"
         onClick={decQtdCoffee}
-        className="flex items-center justify-center  border-none bg-none text-product-purple_dark disabled:opacity-5 hover:text-product-purple_dark"
+        className="flex items-center justify-center border-none bg-none text-product-purple_dark disabled:opacity-5 hover:text-product-purple_dark"
         disabled={quantity <= 1}
       >
         <Minus className="w-3.5 h-3.5" />

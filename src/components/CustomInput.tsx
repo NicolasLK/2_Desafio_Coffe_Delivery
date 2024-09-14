@@ -19,7 +19,7 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
               {...props}
             />
             {rightText && (
-              <p className="mr-3 ml-3 rounded font-Roboto_Regular text-textXS capitalize italic">
+              <p className="mr-3 sm:mr-2 rounded font-Roboto_Regular text-textXS capitalize italic">
                 {rightText}
               </p>
             )}

@@ -8,7 +8,7 @@ export const CoffeeList = () => {
         <h2 className="font-Baloo2_ExtraBold text-titleL mb-[3.5rem]">
           Nossos cafés
         </h2>
-        <div className="flex items-center justify-center flex-wrap gap-x-8 gap-y-10 w-full mt-[3.5rem]">
+        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10 w-full mt-[3.5rem]">
           {coffees.map((coffee) => (
             <CoffeeCard key={coffee.id} coffee={coffee} />
           ))}

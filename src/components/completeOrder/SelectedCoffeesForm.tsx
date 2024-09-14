@@ -20,7 +20,7 @@ export const SelectedCoffeesForm = () => {
         <CustomButton
           type="submit"
           disabled={quantityCart <= 0}
-          className="px-2 py-3 rounded-md bg-product-yellow font-Roboto_Bold text-buttonG text-base-white uppercase disabled:cursor-not-allowed"
+          className="px-2 py-3 bg-product-yellow font-Roboto_Bold text-buttonG text-base-white uppercase disabled:cursor-not-allowed"
         >
           confirmar pedido
         </CustomButton>

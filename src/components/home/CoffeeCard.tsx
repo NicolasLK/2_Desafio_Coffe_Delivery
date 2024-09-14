@@ -36,7 +36,7 @@ export const CoffeeCard = ({ coffee }: CoffeeProps) => {
 
   return (
     <>
-      <form className="flex flex-col items-center p-5 pt-0 max-w-[15rem] bg-base-card rounded-tl-md rounded-br-md rounded-tr-[2.25rem] rounded-bl-[2.25rem] text-center mb-2">
+      <form className="flex flex-col items-center p-5 pt-0 max-w-[15rem] bg-base-card rounded-tl-md rounded-br-md rounded-tr-[2.25rem] rounded-bl-[2.25rem] text-center mb-2 shadow-md">
         <img
           src={coffee.photo}
           alt={`Foto cafe ${coffee.name}`}

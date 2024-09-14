@@ -13,7 +13,10 @@ export const CustomButton = ({
 }: IconWrapperProps) => {
   return (
     <>
-      <button className={className} {...props}>
+      <button
+        className={`${className} rounded-md`} // Exemplo de ajuste de padding para diferentes telas
+        {...props}
+      >
         {children}
       </button>
     </>

@@ -57,13 +57,13 @@ export const CoffeesForm = () => {
       <FormProvider {...confirmOrderForm}>
         <form
           onSubmit={handleSubmit(handleConfirmOrderForm)}
-          className="flex gap-20 w-full max-w-[70rem] mr-auto ml-auto"
+          className="flex flex-col lg:flex-row gap-10 sm:gap-20 w-full max-w-[70rem] mx-auto pt-36"
         >
-          <div className="w-full">
+          <div className="w-full px-4 lg:w-1/2 lg:px-0">
             <AddressForm />
             <MethodPaymentForm />
           </div>
-          <div className="w-full">
+          <div className="w-full px-4 lg:w-1/2 lg:px-0">
             <SelectedCoffeesForm />
           </div>
         </form>
