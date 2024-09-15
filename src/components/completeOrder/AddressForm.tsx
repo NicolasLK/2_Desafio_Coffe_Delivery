@@ -26,7 +26,6 @@ interface AddressProps {
 
 export const AddressForm = () => {
   const [cep, setCep] = useState<string>("");
-  const [disableInputs, setDisableInputs] = useState<boolean>(false);
 
   const { register, control, setValue, formState } = useFormContext();
 
@@ -93,7 +92,6 @@ export const AddressForm = () => {
                         className="w-full sm:w-fit"
                         {...register("cep")}
                         error={errors.cep?.message}
-                        disabled={disableInputs}
                       />
                     </div>
                   )}
@@ -106,7 +104,6 @@ export const AddressForm = () => {
             placeholder="Rua"
             {...register("street")}
             error={errors.street?.message}
-            disabled={disableInputs}
           />
           <div className="flex flex-col sm:flex-row gap-4">
             <CustomInput
@@ -115,7 +112,6 @@ export const AddressForm = () => {
               min={1}
               {...register("number")}
               error={errors.number?.message}
-              disabled={disableInputs}
             />
             <div className="flex-1 bg-base-input">
               <CustomInput
@@ -123,7 +119,6 @@ export const AddressForm = () => {
                 placeholder="Complemento"
                 rightText="opcional"
                 {...register("complement")}
-                disabled={disableInputs}
               />
             </div>
           </div>
@@ -134,7 +129,6 @@ export const AddressForm = () => {
                 placeholder="Bairro"
                 {...register("district")}
                 error={errors.district?.message}
-                disabled={disableInputs}
               />
             </div>
             <div className="flex-1">
@@ -143,7 +137,6 @@ export const AddressForm = () => {
                 placeholder="Cidade"
                 {...register("city")}
                 error={errors.city?.message}
-                disabled={disableInputs}
               />
             </div>
             <CustomInput
@@ -153,7 +146,6 @@ export const AddressForm = () => {
               maxLength={2}
               {...register("uf")}
               error={errors.uf?.message}
-              disabled={disableInputs}
             />
           </div>
         </article>

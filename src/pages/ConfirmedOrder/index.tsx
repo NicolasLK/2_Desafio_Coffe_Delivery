@@ -25,8 +25,8 @@ export default function ConfirmedOrder() {
 
   return (
     <>
-      <section className="w-full max-w-[70rem] h-[34rem] flex items-center gap-16 mr-auto ml-auto">
-        <div className="flex flex-col gap-10">
+      <section className="w-full max-w-[70rem] h-[34rem] flex items-center justify-center gap-16 mr-auto ml-auto pt-32">
+        <div className="flex flex-col gap-10 px-2">
           <span>
             <h1 className="font-Baloo2_ExtraBold text-titleL text-product-yellow_dark">
               Uhu! Pedido confirmado
@@ -66,13 +66,17 @@ export default function ConfirmedOrder() {
               text={
                 <>
                   Pagamento na entrega{" "}
-                  <strong>{paymentMethods[state.paymentMethod].label}</strong>
+                  <strong>{paymentMethods[state.paymentMethod].label}.</strong>
                 </>
               }
             />
           </article>
         </div>
-        <img src={deliverymanImg} alt="Imagem de um entregador" />
+        <img
+          src={deliverymanImg}
+          alt="Imagem de um entregador"
+          className="hidden lg:block lg:w-1/3"
+        />
       </section>
     </>
   );
