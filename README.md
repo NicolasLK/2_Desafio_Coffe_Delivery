@@ -13,7 +13,6 @@
   - [📝 Descrição do Projeto](#-descrição-do-projeto)
   - [🛠 Tecnologias Utilizadas](#-tecnologias-utilizadas)
   - [🚀 Como Rodar o Projeto Localmente](#-como-rodar-o-projeto-localmente)
-  - [Expanding the ESLint configuration](#expanding-the-eslint-configuration)
 
 ---
 
