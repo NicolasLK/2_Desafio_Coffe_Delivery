@@ -38,7 +38,30 @@ Desenvolvido por: **Nicolas Loffi Kaminski**
 
 ## 📝 Descrição do Projeto
 
-Escreva aqui uma breve descrição sobre o projeto, seu intuito e os problemas que ele resolve.
+  Esse desafio tem como objetivo desenvolver uma aplicação front-end que realiza o gerenciamento de compra de uma cafeteria fictícia, as funcionalidades são as seguintes:
+  - Listagem de produtos(Para compra e selecionados);
+  - Adição de quantidade específica no carrinho;
+  - Adição ou remoção da quantidade de produtos dentro do carrinho;
+  - Formulário de endereço para o usuário preencher;
+  - Exibição da quantidade de tipos de produtos no Header;
+  - Exibir o valor total da compra no carrinho(ValProd x QtdProd + Frete);
+
+<br>
+
+  Com essas funcionalidades em mente, foram aplicados os seguintes conceitos:
+  - Estados;
+  - ContextAPI;
+  - LocalStorage;
+  - Imutabilidade do estado;
+  - Listas e chaves no ReactJS;
+  - Propriedades;
+  - Componentização;
+  
+<br>
+
+  **Bônus**: Utilizei uma [API de CEP](https://viacep.com.br/) para preenchimento automático do formulário de endereço, ou seja, o usuário preenche o campo de CEP e as outras informações(Exceto número) são preenchidas automaticamente pela API.
+
+  [Notion do projeto](https://efficient-sloth-d85.notion.site/Desafio-02-Coffee-Delivery-30e42a21fdb44b09a85244fc2c3dbdf9)
 
 ---
 
@@ -66,7 +89,7 @@ Siga os passos abaixo para rodar o projeto localmente:
   ```
 2. Acesse o diretório do projeto:
   ```bash
-   cd seuprojeto
+   cd 2_Desafio_Coffe_Delivery
   ```
 3. Instale as dependências:
   ```bash
